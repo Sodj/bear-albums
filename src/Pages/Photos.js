@@ -27,7 +27,7 @@ import ModeSwitch from "../Components/ModeSwitch"
 export default function Photos(props) {
 
     // get album id from params
-    const album_id = props.match.params.id 
+    const album_id = props.match.params.id
 
     useEffect(() => {
         init()
@@ -54,17 +54,17 @@ export default function Photos(props) {
         response.forEach(photo => {
             photo.kitty = randomKitty()
         })
-        
+
         setLoading(false)
     }
 
     // load more photos
-    const showMore =  async() => {
+    const showMore = async () => {
         setLoadingMore(true)
 
         let new_photos = await getPhotos(page + 1)
         // append the new photos to the existing ones
-        if(new_photos.length){
+        if (new_photos.length) {
             setPhotos([...photos, ...new_photos])
             // associate a cute kitty to new photos ^^
             new_photos.forEach(photo => {
@@ -72,8 +72,8 @@ export default function Photos(props) {
             })
         }
         // the are no more photos
-        else{
-           setHasMore(false) 
+        else {
+            setHasMore(false)
         }
         setPage(page + 1)
 
@@ -95,7 +95,7 @@ export default function Photos(props) {
     // download the photo
     const download = (url) => {
         var elt = document.createElement("a");
-        var blob = new Blob([url], {type: "image/jpg"});
+        var blob = new Blob([url], { type: "image/jpg" });
         elt.href = URL.createObjectURL(blob);
         elt.download = "image.jpg";
         document.body.appendChild(elt)
@@ -103,11 +103,11 @@ export default function Photos(props) {
     }
 
     return (
-        <Box bg="gray.50" _dark={{bg: "gray.900"}} minH="100vh" p="5">
+        <Box bg="gray.50" _dark={{ bg: "gray.900" }} minH="100vh" p="5">
 
             <ModeSwitch />
 
-            <VStack px="40px" alignItems="left">
+            <VStack px="40px" alignItems="left" w="fit-content">
                 <Link to="/albums">
                     <Button leftIcon={<ArrowBackIcon />} colorScheme="black" variant="outline">
                         Back
@@ -132,9 +132,9 @@ export default function Photos(props) {
                 spacing="8"
                 rounded="lg">
 
-                {!loading ? 
+                {!loading ?
                     photos.map(photo => <Photo key={photo.id} photo={photo} kittens={kittens} openPhoto={openPhoto} />) :
-                    array_of_fifty.map((e,i) => <PhotoSkeleton key={i} />)
+                    array_of_fifty.map((e, i) => <PhotoSkeleton key={i} />)
                 }
             </SimpleGrid>
 
