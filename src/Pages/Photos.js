@@ -108,8 +108,8 @@ export default function Photos(props) {
             <ModeSwitch />
 
             <VStack px="40px" alignItems="left" w="fit-content">
-                <Link to="/albums">
-                    <Button leftIcon={<ArrowBackIcon />} colorScheme="black" variant="outline">
+                <Link to="/albums" style={{ width: "fit-content" }}>
+                    <Button leftIcon={<ArrowBackIcon />} colorScheme="black" variant="outline" _hover={{ color: "#50a2fe" }}>
                         Back
                     </Button>
                 </Link>
